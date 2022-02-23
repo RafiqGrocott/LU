@@ -1,4 +1,7 @@
 # Functions go here...
+from tkinter import Y
+
+
 def yes_no(question):
     valid = False
     while not valid:
@@ -6,6 +9,7 @@ def yes_no(question):
 
 
         if response == "yes" or response == "y":
+            print()
             response = "yes"
             return response
 
@@ -14,7 +18,27 @@ def yes_no(question):
             return response
 
         else:
+        
             print("Please answer yes / no")
+
+def num_check(question, low, high):
+    error = "Please enter a whole number between 1 and 10\n"
+
+    valid = False
+    while not valid:
+        try:
+            # ask the question
+            response = int(input(question))
+            # if the amount is too low / too high give
+            if low < response <= high:
+                return response
+
+            # output an error
+            else:
+                print(error)
+
+        except ValueError:
+            print(error)
 
 
 #  **** Main Routine *****
@@ -24,9 +48,14 @@ print()
 
 show_instructions = yes_no("Have you played the game before? ")
 if show_instructions == "no":
+    print()
     # replace with call to display instructions function
     print("display instructions")
     print()
 
-# ask how much noney....
+# ask how much money....
+how_much = num_check("How much would you like to play with? ", 0 , 10)
 
+print()
+
+print("You will be spending ${}".format(how_much))
