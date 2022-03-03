@@ -29,7 +29,7 @@ for item in range(0,10):
     # which subtracts $0.50 from balance
     else:
         # if number = even, set the chosen item to horse
-        if chosen_num / 2 == 0:
+        if chosen_num % 2 == 0:
             chosen = "horse"
 
         # otherwise set to zebra
