@@ -42,10 +42,29 @@ def num_check(question, low, high):
         except ValueError:
             print(error)
 
+def statement_generator(statement, decoration, style):
+    
+    sides = decoration * 3
+
+    greeting = "{} {} {}".format(sides, statement, sides)
+
+    row = len(greeting) * decoration
+
+    if style == 3:
+
+        print(row)
+        print(greeting)
+        print(row)
+
+    else:
+        print(greeting)
+
+    return ""
+
 
 #  **** Main Routine *****
 
-print("Welcome to the LU game")
+statement_generator("Welcome to the LU game", "-", 3)
 print()
 
 show_instructions = yes_no("Have you played the game before? ")
@@ -79,12 +98,14 @@ while play_again == "":
     # user gets a unicorn (add $4 to balance)
     if 1 <= chosen_num <= 5:
         chosen = "unicorn"
+        decoration = "-"
         balance +=4
 
     #if the random # is between 6 and 36
     #user gets donkey which subtracts $1 from balance
     elif 6 <= chosen_num <= 36:
         chosen = "donkey"
+        decoration = "D"
         balance -= 1
 
     # the token is either a horse or zebra...
@@ -93,15 +114,18 @@ while play_again == "":
         # if number = even, set the chosen item to horse
         if chosen_num % 2 == 0:
             chosen = "horse"
+            decoration = "H"
 
         # otherwise set to zebra
         else:
             chosen = "zebra"
+            decoration = "Z"
         balance -= 0.5
     
     # output outcome
 
-    print("You got a {}, your balance is ${:.2f}".format(chosen, balance))
+    feedback ="You got a {}, your balance is ${:.2f}".format(chosen, balance)
+    statement_generator(feedback, decoration, 1)
     
     if balance < 1:
         play_again = "xxx"
